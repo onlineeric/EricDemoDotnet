@@ -1,0 +1,48 @@
+# Ignore build output
+**/bin/
+**/obj/
+
+# Ignore NuGet packages
+**/*.nupkg
+**/*.snupkg
+**/packages/
+
+# Ignore user-specific files
+**/*.user
+**/*.suo
+**/*.sln.docstates
+
+# Ignore Visual Studio files
+**/.vs/
+**/*.vscode/
+
+# Ignore ReSharper files
+**/_ReSharper*/
+**/*.resharper*
+**/*.DotSettings.user
+
+# Ignore test results
+**/TestResults/
+
+# Ignore build artifacts
+**/*.dll
+**/*.exe
+**/*.pdb
+**/*.cache
+**/*.log
+**/*.vsix
+**/*.zip
+**/*.nupkg
+**/*.snupkg
+**/*.swp
+**/*.swo
+**/*.sln.ide
+
+# Ignore .NET Core files
+**/project.lock.json
+**/project.assets.json
+**/*.nuget.props
+**/*.nuget.targets
+
+# Ignore Visual Studio Code files
+**/.vscode/
