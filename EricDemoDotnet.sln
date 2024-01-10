@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "src\Shared
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchMarkRunner", "src\BenchMarkRunner\BenchMarkRunner.csproj", "{2063A2C0-EFE8-4EF3-9E5F-A49CE37FCCFE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{775CF2AF-2F93-452A-9CCE-21E31CE585BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibraryTests", "tests\SharedLibraryTests\SharedLibraryTests.csproj", "{4809849B-6F9A-45F5-B3F5-98551B58F039}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,14 @@ Global
 		{2063A2C0-EFE8-4EF3-9E5F-A49CE37FCCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2063A2C0-EFE8-4EF3-9E5F-A49CE37FCCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2063A2C0-EFE8-4EF3-9E5F-A49CE37FCCFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4809849B-6F9A-45F5-B3F5-98551B58F039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4809849B-6F9A-45F5-B3F5-98551B58F039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4809849B-6F9A-45F5-B3F5-98551B58F039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4809849B-6F9A-45F5-B3F5-98551B58F039}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B0901691-0833-4A0A-9841-0C875E0C427A} = {AE54CAE2-AF03-4C13-B9B5-5B957A3886D5}
 		{2063A2C0-EFE8-4EF3-9E5F-A49CE37FCCFE} = {AE54CAE2-AF03-4C13-B9B5-5B957A3886D5}
+		{4809849B-6F9A-45F5-B3F5-98551B58F039} = {775CF2AF-2F93-452A-9CCE-21E31CE585BC}
 	EndGlobalSection
 EndGlobal
