@@ -11,13 +11,13 @@ public static class SimpleEndpoints
 
 	}
 
-	private static async Task<string> GetItem (int id) => await Task.FromResult($"Get method return item {id}");
+	private static async Task<IResult> GetItem (int id) => await Task.FromResult(Results.Ok(new {result = $"Get method return item {id}"}));
 	
-	private static async Task<string> GetItems() {
+	private static async Task<IResult> GetItems() {
 		await Task.Delay(100);
-		return "Get method return all items";
+		return Results.Ok(new { Result = "Get method return all items" });
 	}
-	
+
 	//private static string PostItem()
 
 }
