@@ -1,3 +1,5 @@
+using System.Reflection.Metadata.Ecma335;
+
 namespace EricDemo.MinimalApi.Simple;
 
 public static class SimpleEndpoints
@@ -7,7 +9,7 @@ public static class SimpleEndpoints
 		var group = app.MapGroup("/simple");
 		group.MapGet("/item/{id}", GetItem);
 		group.MapGet("/items", GetItems);
-		//group.MapPost("/item", PostItem);
+		group.MapPost("/item", PostItem);
 
 	}
 
@@ -18,6 +20,17 @@ public static class SimpleEndpoints
 		return Results.Ok(new { Result = "Get method return all items" });
 	}
 
-	//private static string PostItem()
+	private static async Task<IResult> PostItem(ItemBody item) {
+		await Task.Delay(100);
+		return Results.Created(
+			new Uri("/simple/item/1", UriKind.Relative), 
+			new { Results = $"Post method return item {item.Name} - {item.Description}"}
+		);
+	}
+}
 
+public class ItemBody
+{
+	public string Name { get; set; } = "";
+	public string Description { get; set; } = "";
 }
