@@ -17,14 +17,14 @@ public static class ItemEndpoints
 	
 	private static async Task<IResult> GetItems() {
 		await Task.Delay(100);
-		return Results.Ok(new { Result = "Get method return all items" });
+		return TypedResults.Ok(new { Result = "Get method return all items" });
 	}
 
 	private static async Task<IResult> PostItem(ItemBody item) {
 		await Task.Delay(100);
 		int id = new Random().Next(1, int.MaxValue);
 		ItemBody returnItem = new ItemBody() { Id = id, Name = item.Name, Description = item.Description };
-		return Results.Created(
+		return TypedResults.Created(
 			new Uri($"/simple/item/{id}", UriKind.Relative), 
 			new { status = "success", result = returnItem}
 		);
@@ -32,7 +32,7 @@ public static class ItemEndpoints
 
 	private static async Task<IResult> PutItem(ItemBody item) {
 		if (item.Id == 0) {
-			return Results.BadRequest(new { status = "error", message = "Item Id is required." });
+			return TypedResults.BadRequest(new { status = "error", message = "Item Id is required." });
 		}
 		await Task.Delay(100);
 		return Results.NoContent();  // 204 No Content for a successful PUT, PATCH, or DELETE.
@@ -40,7 +40,7 @@ public static class ItemEndpoints
 
 	private static async Task<IResult> PatchItem(ItemBody item) {
 		if (item.Id == 0) {
-			return Results.BadRequest(new { status = "error", message = "Item Id is required." });
+			return TypedResults.BadRequest(new { status = "error", message = "Item Id is required." });
 		}
 		await Task.Delay(100);
 		return Results.NoContent();  // 204 No Content for a successful PUT, PATCH, or DELETE.
@@ -48,7 +48,7 @@ public static class ItemEndpoints
 
 	private static async Task<IResult> DeleteItem(string id) {
 		if (string.IsNullOrWhiteSpace(id) || id == "0") {
-			return Results.BadRequest(new { status = "error", message = "Item Id is invalid." });
+			return TypedResults.BadRequest(new { status = "error", message = "Item Id is invalid." });
 		}
 		await Task.Delay(100);
 		return Results.NoContent();  // 204 No Content for a successful PUT, PATCH, or DELETE.
