@@ -1,0 +1,6 @@
+@EricControllerBasedApi_HostAddress = http://localhost:5269
+
+GET {{EricControllerBasedApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
