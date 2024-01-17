@@ -1,6 +1,0 @@
-@EricWebApi_HostAddress = http://localhost:5170
-
-GET {{EricWebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
