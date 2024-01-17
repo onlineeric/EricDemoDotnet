@@ -1,6 +1,7 @@
+using EricDemo.EricControllerBasedApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EricControllerBasedApi.Controllers;
+namespace EricDemo.EricControllerBasedApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]

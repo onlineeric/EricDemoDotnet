@@ -1,4 +1,4 @@
-namespace EricControllerBasedApi;
+namespace EricDemo.EricControllerBasedApi.Models;
 
 public class WeatherForecast
 {
