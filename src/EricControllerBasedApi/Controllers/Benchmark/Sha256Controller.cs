@@ -1,0 +1,25 @@
+using EricDemo.SharedLibrary.BenchMark;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EricDemo.EricControllerBasedApi.Controllers;
+
+[ApiController]
+[Route("benchmark/[controller]")]
+public class Sha256Controller : ControllerBase
+{
+	private readonly ILogger<ItemController> _logger;
+
+	public Sha256Controller(ILogger<ItemController> logger)
+	{
+		_logger = logger;
+	}
+
+	[HttpGet("{execTimes}", Name = "GetSha256Result")]
+	public BenchMarkTestResult? Get(int execTimes)
+	{
+		return new BenchMarkSha256().Run(execTimes).Result;
+	}
+
+
+
+}
