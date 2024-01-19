@@ -19,13 +19,13 @@ public class BenchMarkTestCase
 	protected void StartBenchmarking() {
 		startCpuTime = process.TotalProcessorTime;
 		GC.Collect();
-		startMemory = GC.GetTotalMemory(forceFullCollection: true);
+		startMemory = GC.GetTotalMemory(forceFullCollection: false);
 		stopwatch.Start();
 	}
 	protected void StopBenchmarking() {
 		stopwatch.Stop();
 		var endCpuTime = process.TotalProcessorTime;
-		var endMemory = GC.GetTotalMemory(forceFullCollection: true);
+		var endMemory = GC.GetTotalMemory(forceFullCollection: false);
 
 		Result = new BenchMarkTestResult {
 			CpuTime = (endCpuTime - startCpuTime).TotalMilliseconds,
