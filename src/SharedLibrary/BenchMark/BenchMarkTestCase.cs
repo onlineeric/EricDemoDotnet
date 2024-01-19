@@ -18,6 +18,7 @@ public class BenchMarkTestCase
 	}
 	protected void StartBenchmarking() {
 		startCpuTime = process.TotalProcessorTime;
+		GC.Collect();
 		startMemory = GC.GetTotalMemory(forceFullCollection: true);
 		stopwatch.Start();
 	}
