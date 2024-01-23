@@ -22,17 +22,29 @@ jobs:
           dotnet-version: '8.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Build with dotnet (EricMinimalApi)
+        run: dotnet build --configuration Release --project ./src/EricMinimalApi/EricMinimalApi.csproj
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: dotnet publish (EricMinimalApi)
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/EricMinimalApi --project ./src/EricMinimalApi/EricMinimalApi.csproj
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact for deployment job (EricMinimalApi)
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: EricMinimalApi
+          path: ${{env.DOTNET_ROOT}}/EricMinimalApi
+
+      - name: Build with dotnet (EricControllerBasedApi)
+        run: dotnet build --configuration Release --project ./src/EricControllerBasedApi/EricControllerBasedApi.csproj
+
+      - name: dotnet publish (EricControllerBasedApi)
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/EricControllerBasedApi --project ./src/EricControllerBasedApi/EricControllerBasedApi.csproj
+
+      - name: Upload artifact for deployment job (EricControllerBasedApi)
+        uses: actions/upload-artifact@v3
+        with:
+          name: EricControllerBasedApi
+          path: ${{env.DOTNET_ROOT}}/EricControllerBasedApi
 
   deploy:
     runs-on: windows-latest
@@ -42,16 +54,16 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact (EricMinimalApi)
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: EricMinimalApi
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Web App (EricMinimalApi)
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'EricDemoDotnet'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_98BCB20BF3DB47D7B3E26BEE84872701 }}
-          package: .
+          package: ./EricMinimalApi
