@@ -22,17 +22,29 @@ jobs:
           dotnet-version: '8.x'
           include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Build with dotnet (EricMinimalApi)
+        run: dotnet build --configuration Release ./src/EricMinimalApi/EricMinimalApi.csproj
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: dotnet publish (EricMinimalApi)
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/EricMinimalApi ./src/EricMinimalApi/EricMinimalApi.csproj
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact for deployment job (EricMinimalApi)
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: EricMinimalApi
+          path: ${{env.DOTNET_ROOT}}/EricMinimalApi
+
+      - name: Build with dotnet (EricControllerBasedApi)
+        run: dotnet build --configuration Release ./src/EricControllerBasedApi/EricControllerBasedApi.csproj
+
+      - name: dotnet publish (EricControllerBasedApi)
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/EricControllerBasedApi ./src/EricControllerBasedApi/EricControllerBasedApi.csproj
+
+      - name: Upload artifact for deployment job (EricControllerBasedApi)
+        uses: actions/upload-artifact@v3
+        with:
+          name: EricControllerBasedApi
+          path: ${{env.DOTNET_ROOT}}/EricControllerBasedApi
 
   deploy:
     runs-on: windows-latest
@@ -45,7 +57,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: EricMinimalApi
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
