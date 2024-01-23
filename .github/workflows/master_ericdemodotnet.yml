@@ -66,4 +66,4 @@ jobs:
           app-name: 'EricDemoDotnet'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_98BCB20BF3DB47D7B3E26BEE84872701 }}
-          package: ${{env.DOTNET_ROOT}}/EricMinimalApi
+          package: .
