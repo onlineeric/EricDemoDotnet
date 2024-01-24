@@ -65,7 +65,7 @@ jobs:
           app-name: 'EricMinimalApi'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E71975FDA3154753A33D78C577E5374D }}
-          package: ./EricMinimalApi
+          package: .
 
       - name: Download artifact from build job for EricControllerBasedApi
         uses: actions/download-artifact@v3
@@ -78,4 +78,4 @@ jobs:
           app-name: 'EricControllerBasedApi'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ERICCONTROLLERBASEDAPI }}
-          package: ./EricControllerBasedApi
+          package: .
