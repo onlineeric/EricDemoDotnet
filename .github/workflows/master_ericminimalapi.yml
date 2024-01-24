@@ -54,16 +54,28 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact from build job for EricMinimalApi
         uses: actions/download-artifact@v3
         with:
           name: EricMinimalApi
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: Deploy to Azure Web App for EricMinimalApi
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'EricMinimalApi'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E71975FDA3154753A33D78C577E5374D }}
-          package: .
+          package: ./EricMinimalApi
+
+      - name: Download artifact from build job for EricControllerBasedApi
+        uses: actions/download-artifact@v3
+        with:
+          name: EricControllerBasedApi
+
+      - name: Deploy to Azure Web App for EricControllerBasedApi
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'EricControllerBasedApi'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ERICCONTROLLERBASEDAPI }}
+          package: ./EricControllerBasedApi
