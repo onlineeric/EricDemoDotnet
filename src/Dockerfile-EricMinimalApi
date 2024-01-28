@@ -1,0 +1,26 @@
+# docker build command example: "docker build -t ericminimalapi:latest -f Dockerfile-EricMinimalApi ."
+
+# Dockerfile for EricMinimalApi
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
+WORKDIR /app
+
+# Copy SharedLibrary project and restore as distinct layers
+COPY ./SharedLibrary/*.csproj ./SharedLibrary/
+RUN dotnet restore ./SharedLibrary/SharedLibrary.csproj
+
+# Copy EricMinimalApi project and restore as distinct layers
+COPY ./EricMinimalApi/*.csproj ./EricMinimalApi/
+RUN dotnet restore ./EricMinimalApi/EricMinimalApi.csproj
+
+# Copy everything else and build
+COPY ./EricMinimalApi/ ./EricMinimalApi/
+COPY ./SharedLibrary ./SharedLibrary
+RUN dotnet publish ./EricMinimalApi/EricMinimalApi.csproj -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
+WORKDIR /app
+COPY --from=build-env /app/out .
+ENV ASPNETCORE_URLS=http://+:5212
+EXPOSE 5212
+ENTRYPOINT ["dotnet", "EricMinimalApi.dll"]
