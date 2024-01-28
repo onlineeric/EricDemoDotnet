@@ -1,3 +1,5 @@
+# docker build command example: "docker build -t ericcontrollerbasedapi:latest -f Dockerfile-EricControllerBasedApi ."
+
 # Dockerfile for EricControllerBasedApi
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
 WORKDIR /app
