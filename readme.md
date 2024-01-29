@@ -10,7 +10,8 @@ This project serves as a demonstration of my C# knowledge and its API developmen
 
 1. Demonstrate my C# knowledge.
 2. Demonstrate both Minimal API and Controller Based API.
-3. Keep it as a simple reference for my personal use.
+3. Demonstrate CICD pipeline setup with Github Actions, Docker Hub and Azure Web App.
+4. Keep it as a simple reference for my personal use.
 
 ## Project Ambition
 
