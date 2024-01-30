@@ -1,81 +1,45 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy ASP.Net Core app to Azure Web App - EricMinimalApi
+name: Deploy EricMinimalApi to Docker hub then Azure Web App
 
 on:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: windows-latest
+  build-and-push-to-docker-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@master
+
+      # grep the version from ./EricMinimalApi/appsettings.json, var AppVersion = "1.0.0", then cut the version number between the double quotes
+      - name: "Get version"
+        id: get_version
+        run: echo "APP_VERSION=$(jq -r '.AppVersion' ./EricMinimalApi/appsettings.json)" >> $GITHUB_ENV
+
+      - name: "Login via Docker Hub"
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: "Build and push Docker image"
+        uses: docker/build-push-action@v4
+        with:
+          context: ./src
+          file: ./src/Dockerfile-EricMinimalApi
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ericminimalapi:latest, ${{ secrets.DOCKER_HUB_USERNAME }}/ericminimalapi:${{ env.APP_VERSION }}
+
+  deploy-to-azure:
+    needs: build-and-push-to-docker-hub
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '8.x'
-          include-prerelease: true
-
-      - name: Build with dotnet (EricMinimalApi)
-        run: dotnet build --configuration Release ./src/EricMinimalApi/EricMinimalApi.csproj
-
-      - name: dotnet publish (EricMinimalApi)
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/EricMinimalApi ./src/EricMinimalApi/EricMinimalApi.csproj
-
-      - name: Upload artifact for deployment job (EricMinimalApi)
-        uses: actions/upload-artifact@v3
-        with:
-          name: EricMinimalApi
-          path: ${{env.DOTNET_ROOT}}/EricMinimalApi
-
-      - name: Build with dotnet (EricControllerBasedApi)
-        run: dotnet build --configuration Release ./src/EricControllerBasedApi/EricControllerBasedApi.csproj
-
-      - name: dotnet publish (EricControllerBasedApi)
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/EricControllerBasedApi ./src/EricControllerBasedApi/EricControllerBasedApi.csproj
-
-      - name: Upload artifact for deployment job (EricControllerBasedApi)
-        uses: actions/upload-artifact@v3
-        with:
-          name: EricControllerBasedApi
-          path: ${{env.DOTNET_ROOT}}/EricControllerBasedApi
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job for EricMinimalApi
-        uses: actions/download-artifact@v3
-        with:
-          name: EricMinimalApi
-
-      - name: Deploy to Azure Web App for EricMinimalApi
+      - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'EricMinimalApi'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E71975FDA3154753A33D78C577E5374D }}
-          package: .
-
-      - name: Download artifact from build job for EricControllerBasedApi
-        uses: actions/download-artifact@v3
-        with:
-          name: EricControllerBasedApi
-
-      - name: Deploy to Azure Web App for EricControllerBasedApi
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'EricControllerBasedApi'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ERICCONTROLLERBASEDAPI }}
-          package: .
+          app-name: "ericminimalapi"
+          slot-name: "production"
+          publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE }}
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/ericminimalapi:latest
