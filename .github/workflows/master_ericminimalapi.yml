@@ -30,7 +30,7 @@ jobs:
           context: ./src
           file: ./src/Dockerfile-EricMinimalApi
           push: true
-          tags: ${{ env.DOCKER_HUB_USERNAME }}/ericminimalapi:latest, ${{ env.DOCKER_HUB_USERNAME }}/ericminimalapi:${{ env.APP_VERSION }}
+          tags: onlineeric/ericminimalapi:latest, onlineeric/ericminimalapi:${{ env.APP_VERSION }}
 
   deploy-to-azure:
     needs: build-and-push-to-docker-hub
@@ -44,4 +44,4 @@ jobs:
           app-name: "EricMinimalApi"
           slot-name: "production"
           publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE }}
-          images: ${{ env.DOCKER_HUB_USERNAME }}/ericminimalapi:latest
+          images: onlineeric/ericminimalapi:latest
