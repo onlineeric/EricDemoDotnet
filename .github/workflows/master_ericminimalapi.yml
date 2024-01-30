@@ -16,7 +16,7 @@ jobs:
       # grep the version from ./EricMinimalApi/appsettings.json, var AppVersion = "1.0.0", then cut the version number between the double quotes
       - name: "Get version"
         id: get_version
-        run: echo "APP_VERSION=$(jq -r '.AppVersion' ./EricMinimalApi/appsettings.json)" >> $GITHUB_ENV
+        run: echo "APP_VERSION=$(jq -r '.AppVersion' ./src/EricMinimalApi/appsettings.json)" >> $GITHUB_ENV
 
       - name: "Login via Docker Hub"
         uses: docker/login-action@v2
@@ -35,6 +35,7 @@ jobs:
   deploy-to-azure:
     needs: build-and-push-to-docker-hub
     runs-on: ubuntu-latest
+    environment: MinimalApiEnv
 
     steps:
       - name: "Deploy to Azure Web App"
