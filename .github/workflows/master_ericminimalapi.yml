@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push-to-docker-hub:
     runs-on: ubuntu-latest
+    environment: MinimalApiEnv
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@master
@@ -39,7 +40,7 @@ jobs:
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "ericminimalapi"
+          app-name: "EricMinimalApi"
           slot-name: "production"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ERICMINIMALAPI }}
+          publish-profile: ${{ secrets.AZURE_WEB_APP_PUBLISH_PROFILE }}
           images: ${{ env.DOCKER_HUB_USERNAME }}/ericminimalapi:latest
