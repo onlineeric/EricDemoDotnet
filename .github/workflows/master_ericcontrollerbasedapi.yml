@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./src
-          file: ./src/Dockerfile-EricControlBasedApi
+          file: ./src/Dockerfile-EricControllerBasedApi
           push: true
           tags: onlineeric/ericcontrollerbasedapi:latest, onlineeric/ericcontrollerbasedapi:${{ env.APP_VERSION }}
 
