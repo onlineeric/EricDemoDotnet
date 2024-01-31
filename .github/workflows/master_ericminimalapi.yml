@@ -13,7 +13,7 @@ jobs:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@master
 
-      # grep the version from ./EricMinimalApi/appsettings.json, var AppVersion = "1.0.0", then cut the version number between the double quotes
+      # grep the version from ./EricMinimalApi/appsettings.json
       - name: "Get version"
         id: get_version
         run: echo "APP_VERSION=$(jq -r '.AppVersion' ./src/EricMinimalApi/appsettings.json)" >> $GITHUB_ENV

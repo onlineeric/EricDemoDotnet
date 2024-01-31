@@ -18,6 +18,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+var appVersion = builder.Configuration["AppVersion"];
+app.MapGet("/status", () => $"Version: {appVersion} is running");
+
 app.UseAuthorization();
 
 app.MapControllers();
