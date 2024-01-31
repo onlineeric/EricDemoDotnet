@@ -1,4 +1,4 @@
-name: Deploy EricControlBasedApi to Docker hub then Azure Web App
+name: Deploy EricControllerBasedApi to Docker hub then Azure Web App
 
 on:
   push:
@@ -13,10 +13,10 @@ jobs:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@master
 
-      # grep the version from ./EricControlBasedApi/appsettings.json
+      # grep the version from ./EricControllerBasedApi/appsettings.json
       - name: "Get version"
         id: get_version
-        run: echo "APP_VERSION=$(jq -r '.AppVersion' ./src/EricControlBasedApi/appsettings.json)" >> $GITHUB_ENV
+        run: echo "APP_VERSION=$(jq -r '.AppVersion' ./src/EricControllerBasedApi/appsettings.json)" >> $GITHUB_ENV
 
       - name: "Login via Docker Hub"
         uses: docker/login-action@v2
