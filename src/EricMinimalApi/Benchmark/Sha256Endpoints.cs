@@ -1,4 +1,5 @@
 using EricDemo.SharedLibrary.BenchMark;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EricDemo.MinimalApi.Benchmark;
 
@@ -10,6 +11,7 @@ public static class Sha256Endpoints
 		group.MapGet("/{exeTimes}", GetSha256);
 	}
 
+	[Authorize]
 	private static IResult GetSha256(int exeTimes)
 	{
 		if (exeTimes < 1)

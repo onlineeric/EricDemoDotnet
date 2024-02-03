@@ -1,4 +1,5 @@
 using EricDemo.SharedLibrary.BenchMark;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EricDemo.MinimalApi.Benchmark;
 
@@ -8,6 +9,7 @@ public static class Md5Endpoints {
 		group.MapGet("/{exeTimes}", GetMd5);
 	}
 
+	[Authorize]
 	private static IResult GetMd5(int exeTimes) {
 		if (exeTimes < 1) {
 			return TypedResults.BadRequest("exeTimes must be greater than 0");
