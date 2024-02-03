@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+
 namespace EricDemo.MinimalApi.Simple;
 
 public static class ItemEndpoints
@@ -13,13 +15,16 @@ public static class ItemEndpoints
 		group.MapDelete("/{id}", DeleteItem);
 	}
 
+	[Authorize]
 	private static async Task<IResult> GetItem (int id) => await Task.FromResult(Results.Ok(new {result = $"Get method return item {id}"}));
 	
+	[Authorize]
 	private static async Task<IResult> GetItems() {
 		await Task.Delay(100);
 		return TypedResults.Ok(new { Result = "Get method return all items" });
 	}
 
+	[Authorize]
 	private static async Task<IResult> PostItem(ItemBody item) {
 		await Task.Delay(100);
 		int id = new Random().Next(1, int.MaxValue);
@@ -30,6 +35,7 @@ public static class ItemEndpoints
 		);
 	}
 
+	[Authorize]
 	private static async Task<IResult> PutItem(ItemBody item) {
 		if (item.Id == 0) {
 			return TypedResults.BadRequest(new { status = "error", message = "Item Id is required." });
@@ -38,6 +44,7 @@ public static class ItemEndpoints
 		return Results.NoContent();  // 204 No Content for a successful PUT, PATCH, or DELETE.
 	}
 
+	[Authorize]
 	private static async Task<IResult> PatchItem(ItemBody item) {
 		if (item.Id == 0) {
 			return TypedResults.BadRequest(new { status = "error", message = "Item Id is required." });
@@ -46,6 +53,7 @@ public static class ItemEndpoints
 		return Results.NoContent();  // 204 No Content for a successful PUT, PATCH, or DELETE.
 	}
 
+	[Authorize]
 	private static async Task<IResult> DeleteItem(string id) {
 		if (string.IsNullOrWhiteSpace(id) || id == "0") {
 			return TypedResults.BadRequest(new { status = "error", message = "Item Id is invalid." });
