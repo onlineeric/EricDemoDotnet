@@ -2,6 +2,11 @@
 
 Welcome! This repository is a personal project, where I, Eric Cheng, am demonstrating my C# knowledge and the Minimal API and Controller Based API concepts.
 
+![.NET](https://img.shields.io/badge/-C%23-512BD4?logo=.net&logoColor=white)
+![Minimal API](https://img.shields.io/badge/-Minimal%20API-512BD4?logo=.net&logoColor=white)
+![.NET Web API](https://img.shields.io/badge/-%20Web%20API-512BD4?logo=.net&logoColor=white)
+![Azure](https://img.shields.io/badge/-Azure-0089D6?logo=microsoft-azure&logoColor=white)
+
 ## Project Description
 
 This project serves as a demonstration of my C# knowledge and its API development paradigms. I use it to explore various features and concepts in C# programming and API development.
