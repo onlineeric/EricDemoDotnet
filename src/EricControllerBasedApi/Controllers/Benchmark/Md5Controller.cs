@@ -1,10 +1,12 @@
 using EricDemo.SharedLibrary.BenchMark;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EricDemo.EricControllerBasedApi.Controllers;
 
 [ApiController]
 [Route("benchmark/[controller]")]
+[Authorize]
 public class Md5Controller : ControllerBase
 {
 	private readonly ILogger<ItemController> _logger;

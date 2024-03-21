@@ -1,7 +1,11 @@
+using EricDemo.SharedLibrary.Auth;
+using Microsoft.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -21,6 +25,7 @@ app.UseHttpsRedirection();
 var appVersion = builder.Configuration["AppVersion"];
 app.MapGet("/status", () => $"Version: {appVersion} is running");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

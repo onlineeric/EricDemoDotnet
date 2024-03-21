@@ -1,11 +1,13 @@
 using System.Security.Cryptography;
 using EricDemo.EricControllerBasedApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EricDemo.EricControllerBasedApi.Controllers;
 
 [ApiController]
 [Route("simple/[controller]")]
+[Authorize]
 public class ItemController : ControllerBase
 {
 	private readonly ILogger<ItemController> _logger;
