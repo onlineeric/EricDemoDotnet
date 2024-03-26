@@ -1,6 +1,4 @@
-using EricDemo.MinimalApi.Benchmark;
-
-namespace EricDemo.MinimalApi.Simple;
+namespace EricDemo.MinimalApi.Benchmark;
 
 public static class BenchmarkEndpoints
 {

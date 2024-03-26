@@ -20,6 +20,7 @@ public static class Md5Endpoints {
 		}
 
 		var result = new BenchMarkMd5().Run(exeTimes).Result;
+		result!.Server = Constants.ServerName;
 		return TypedResults.Ok(result);
 	}
 }

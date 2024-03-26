@@ -25,6 +25,7 @@ public static class Sha256Endpoints
 		}
 
 		var result = new BenchMarkSha256().Run(exeTimes).Result;
+		result!.Server = Constants.ServerName;
 		return TypedResults.Ok(result);
 	}
 }

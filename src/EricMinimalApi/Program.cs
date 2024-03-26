@@ -1,4 +1,5 @@
 using EricDemo.MinimalApi.Simple;
+using EricDemo.MinimalApi.Benchmark;
 using EricDemo.SharedLibrary.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +14,7 @@ WebApplication app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-string appVersion = builder.Configuration["AppVersion"];
+string? appVersion = builder.Configuration["AppVersion"];
 
 app.MapGet("/", () => "Welcome to Eric's Minimal API Demo");
 app.MapGet("/status", () => $"Version {appVersion} is running");
