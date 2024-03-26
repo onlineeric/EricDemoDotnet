@@ -19,6 +19,7 @@ public class BenchMarkMd5 : BenchMarkTestCase {
 			md5.ComputeHash(data);
 		}
 		StopBenchmarking();
+		Result!.Algorithm = "Md5";
 		return this;
 	}
 }

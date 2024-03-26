@@ -20,6 +20,7 @@ public class BenchMarkSha256 : BenchMarkTestCase {
 			sha256.ComputeHash(data);
 		}
 		StopBenchmarking();
+		Result!.Algorithm = "SHA256";
 		return this;
 	}
 }

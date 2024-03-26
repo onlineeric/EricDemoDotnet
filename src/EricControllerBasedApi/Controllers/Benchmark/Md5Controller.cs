@@ -19,7 +19,9 @@ public class Md5Controller : ControllerBase
 	[HttpGet("{execTimes}", Name = "GetMd5Result")]
 	public BenchMarkTestResult? Get(int execTimes)
 	{
-		return new BenchMarkMd5().Run(execTimes).Result;
+		var Result = new BenchMarkMd5().Run(execTimes).Result;
+		Result!.Server = Constants.ServerName;
+		return Result;
 	}
 
 

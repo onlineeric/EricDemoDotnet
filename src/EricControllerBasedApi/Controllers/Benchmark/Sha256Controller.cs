@@ -19,7 +19,9 @@ public class Sha256Controller : ControllerBase
 	[HttpGet("{execTimes}", Name = "GetSha256Result")]
 	public BenchMarkTestResult? Get(int execTimes)
 	{
-		return new BenchMarkSha256().Run(execTimes).Result;
+		var Result = new BenchMarkSha256().Run(execTimes).Result;
+		Result!.Server = Constants.ServerName;
+		return Result;
 	}
 
 
