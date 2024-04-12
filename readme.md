@@ -1,7 +1,8 @@
 # Eric's C# Minimal API and Controller Based API Demo Project
 
-Welcome! This repository is a personal project, where I, Eric Cheng, am demonstrating my C# knowledge and the Minimal API and Controller Based API concepts.
+Welcome! This repository is a personal project, where I, Eric Cheng, am demonstrating my C# knowledge, the Minimal API and Controller Based API concepts.
 
+For this DotNet Project, I have used the following technologies:
 ![.NET](https://img.shields.io/badge/-C%23-512BD4?logo=.net&logoColor=white)
 ![Minimal API](https://img.shields.io/badge/-Minimal%20API-512BD4?logo=.net&logoColor=white)
 ![.NET Web API](https://img.shields.io/badge/-%20Web%20API-512BD4?logo=.net&logoColor=white)
@@ -15,6 +16,10 @@ Welcome! This repository is a personal project, where I, Eric Cheng, am demonstr
 
 This project serves as a demonstration of my C# knowledge and its API development paradigms. I use it to explore various features and concepts in C# programming and API development.
 
+## Demo Site
+
+You can view [My Demo Website](https://agreeable-water-061d90800.5.azurestaticapps.net) built using React, connected to this API backend  
+
 ## Goals
 
 1. Demonstrate my C# knowledge.
@@ -24,7 +29,7 @@ This project serves as a demonstration of my C# knowledge and its API developmen
 
 ## Project Ambition
 
-Beyond this C# implementation, my overarching objective is to create a multi-language demo project that showcases my knowledge and skills. I plan to replicate this project in Go and Rust to demonstrate proficiency across these platforms. Furthermore, I intend to develop a corresponding user interface using ReactJS, thus highlighting my front-end development capabilities as well.
+Beyond this C# implementation, my overarching objective is to create a multi-language demo project that showcases my knowledge and skills. I have created a similar project in GoLang, [My Demo Website](https://agreeable-water-061d90800.5.azurestaticapps.net) is connected to both the C# and GoLang backend.
 
 ## Installation and Running
 
