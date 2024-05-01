@@ -1,8 +1,11 @@
 # Eric's C# Minimal API and Controller Based API Demo Project
 
-Welcome! This repository is a personal project, where I, Eric Cheng, am demonstrating my C# knowledge, the Minimal API and Controller Based API concepts.
+Welcome! I'm Eric Cheng, and this repository is one of my personal demo project to showcase my full stack and AI development skills.
 
-For this DotNet Project, I have used the following technologies:
+## Project Description
+
+This project serves as a demonstration of my C# knowledge and its API development paradigms. I use it to explore various features and concepts in C# programming and API development.
+
 ![.NET](https://img.shields.io/badge/-C%23-512BD4?logo=.net&logoColor=white)
 ![Minimal API](https://img.shields.io/badge/-Minimal%20API-512BD4?logo=.net&logoColor=white)
 ![.NET Web API](https://img.shields.io/badge/-%20Web%20API-512BD4?logo=.net&logoColor=white)
@@ -11,10 +14,6 @@ For this DotNet Project, I have used the following technologies:
 ![GitHub Actions](https://img.shields.io/badge/-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
 ![CI/CD](https://img.shields.io/badge/-CI%2FCD-5C6BC0?logo=jenkins&logoColor=white)
 ![Azure](https://img.shields.io/badge/-Azure-0089D6?logo=microsoft-azure&logoColor=white)
-
-## Project Description
-
-This project serves as a demonstration of my C# knowledge and its API development paradigms. I use it to explore various features and concepts in C# programming and API development.
 
 ## Demo Site
 
