@@ -4,22 +4,28 @@ using EricDemo.SharedLibrary.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
-builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-builder.Services.AddAuthorization();
-WebApplication app = builder.Build();
+namespace EricDemo.MinimalApi;
 
-// Configure the HTTP request pipeline.
-app.UseAuthentication();
-app.UseAuthorization();
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		var builder = WebApplication.CreateBuilder(args);
+		builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+		builder.Services.AddAuthorization();
+		var app = builder.Build();
 
-string? appVersion = builder.Configuration["AppVersion"];
+		app.UseAuthentication();
+		app.UseAuthorization();
 
-app.MapGet("/", () => "Welcome to Eric's Minimal API Demo");
-app.MapGet("/status", () => $"Version {appVersion} is running");
+		string? appVersion = builder.Configuration["AppVersion"];
 
-SimpleEndpoints.Map(app);
-BenchmarkEndpoints.Map(app);
+		app.MapGet("/", () => "Welcome to Eric's Minimal API Demo");
+		app.MapGet("/status", () => $"Version {appVersion} is running");
 
-app.Run();
+		SimpleEndpoints.Map(app);
+		BenchmarkEndpoints.Map(app);
+
+		app.Run();
+	}
+}
